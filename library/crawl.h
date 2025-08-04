@@ -30,7 +30,7 @@ public:
             create_Dir(target_Dir);
         }
 
-        char downloadPath[200] = "../";
+        char downloadPath[200] = "../public/";
         my_strcat(downloadPath, target_Dir);
         my_strcat(downloadPath, "/downloaded_page.html");
 
