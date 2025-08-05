@@ -1,3 +1,4 @@
+#pragma once
 #include <filesystem>
 #include <iostream> 
 #include <fstream>
@@ -36,12 +37,13 @@ void create_Dir(char* name){
     }
 }
 
-void getLinks(char* fileName, int depth){
+void getLinks(char* fileName, int depth, char* target_Dir){
     fstream in(fileName);
     char c;
-    char link[150];
     char startsWith[] = "href";
     int index = 0;
+    char urls[10][150];  
+    int urlCount = 0;
 
     while (in.get(c)) {
         if (startsWith[index] != '\0' && startsWith[index] == c) {
@@ -63,6 +65,8 @@ void getLinks(char* fileName, int depth){
             url[urlIndex] = '\0';
             if(isHtml(url)){
                 cout<<url<<endl;
+                my_strcpy(urls[urlCount], url);
+                urlCount++;
             }
             index = 0; 
         }

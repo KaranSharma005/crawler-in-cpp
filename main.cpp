@@ -15,7 +15,6 @@ int main(int argc, char* argv[]){
     }
 
     Crawl obj(argv[1], argv[2], depth);
-    obj.downloadPage();
-    obj.extractLinks();
+    obj.downloadPage(argv[1], argv[2], depth);
     return 0;
 }
