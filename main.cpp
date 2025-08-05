@@ -8,8 +8,14 @@ int main(int argc, char* argv[]){
         cout<<"Missing necessary arguements\n";
         return 0;
     }
+    int depth = convertToInt(argv[3]);
+    if(depth == -1){
+        cout<<"Invalid arguement for maximum crawling depth\n";
+        return 0;
+    }
 
-    Crawl obj(argv[1], argv[2], argv[3]);
+    Crawl obj(argv[1], argv[2], depth);
     obj.downloadPage();
+    obj.extractLinks();
     return 0;
 }
