@@ -37,41 +37,41 @@ void create_Dir(char* name){
     }
 }
 
-void getLinks(char* fileName, int depth, char* target_Dir){
-    fstream in(fileName);
-    char c;
-    char startsWith[] = "href";
-    int index = 0;
-    char urls[10][150];  
-    int urlCount = 0;
+// void getLinks(char* fileName, int depth, char* target_Dir){
+//     fstream in(fileName);
+//     char c;
+//     char startsWith[] = "href";
+//     int index = 0;
+//     char urls[10][150];  
+//     int urlCount = 0;
 
-    while (in.get(c)) {
-        if (startsWith[index] != '\0' && startsWith[index] == c) {
-            index++;
-        }
-        else if (startsWith[index] == '\0') {
-            while (in.get(c)) {
-                if (c == '"' || c == '\'')
-                    break;
-            }
+//     while (in.get(c)) {
+//         if (startsWith[index] != '\0' && startsWith[index] == c) {
+//             index++;
+//         }
+//         else if (startsWith[index] == '\0') {
+//             while (in.get(c)) {
+//                 if (c == '"' || c == '\'')
+//                     break;
+//             }
 
-            char url[150];
-            int urlIndex = 0;
-            while (in.get(c)) {
-                if (c == '"' || c == '\'')
-                    break; 
-                url[urlIndex++] = c;
-            }
-            url[urlIndex] = '\0';
-            if(isHtml(url)){
-                cout<<url<<endl;
-                my_strcpy(urls[urlCount], url);
-                urlCount++;
-            }
-            index = 0; 
-        }
-        else {
-            index = 0;
-        }
-    }
-}
+//             char url[150];
+//             int urlIndex = 0;
+//             while (in.get(c)) {
+//                 if (c == '"' || c == '\'')
+//                     break; 
+//                 url[urlIndex++] = c;
+//             }
+//             url[urlIndex] = '\0';
+//             if(isHtml(url)){
+//                 cout<<url<<endl;
+//                 my_strcpy(urls[urlCount], url);
+//                 urlCount++;
+//             }
+//             index = 0; 
+//         }
+//         else {
+//             index = 0;
+//         }
+//     }
+// }
