@@ -1,15 +1,16 @@
 {
   "version": "0.2.0",
   "configurations": [
+
     {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
-      "args": [],
-      "stopAtEntry": false,
+      "args": ["http://codequotient.com", "code", "5"],
+      "stopAtEntry": true,
       "externalConsole": true,
       "cwd": "d:/c++/CQST/crawler",
-      "program": "d:/c++/CQST/crawler/build/Debug/outDebug",
+      "program": "d:/c++/CQST/crawler/main",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

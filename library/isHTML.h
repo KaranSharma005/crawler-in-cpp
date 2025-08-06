@@ -23,7 +23,7 @@ bool isHtml(char* url) {
         endsWith(url, (char*)".jpeg") || substring(url, (char*)".svg") || 
         endsWith(url, (char*)".ico") || endsWith(url, (char*)".pdf") ||
         substring(url, (char*)"fonts.") || substring(url, (char*)"/css") ||
-        substring(url, (char*)".woff") || substring(url, (char*)".ttf") || !substring(url, (char*)".")) {
+        substring(url, (char*)".woff") || substring(url, (char*)".ttf")) {
         return false; 
     }
 
