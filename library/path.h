@@ -136,7 +136,7 @@ bool isAlphaNum(char c)
            (c >= 'a' && c <= 'z');
 }
 
-void extractWordsString(const char *filePath, const char* link)
+void extractWordsString(const char *filePath, const char *link)
 {
     HashMap<char *, int> *wordsFrequency = new HashMap<char *, int>(30);
     ifstream sWord(filePath);
@@ -250,10 +250,50 @@ void extractWordsString(const char *filePath, const char* link)
     }
 
     char *frequentWord = wordsFrequency->getFrequent();
-    ofstream append("log.txt", ios::app);
-    append << frequentWord << " -> ";
-    append << link << "\n";
-    cout << "frequent word is -> " << frequentWord << "\n\n";
+    // ofstream append("log.txt", ios::app);
+    // append << frequentWord << " -> ";
+    // append << link << "\n";
+    // cout << "frequent word is -> " << frequentWord << "\n\n";
+
+    ifstream readFile("log.txt");
+    ofstream writeFile("temp.txt");
+
+    bool found = false;
+    string line;
+
+    if (!readFile.is_open())
+    {
+        ofstream out("log.txt");
+        out << frequentWord << " -> " << link << "\n";
+    }
+    else
+    {
+        while (getline(readFile, line))
+        {
+            if (!found && line.rfind(string(frequentWord) + " -> " + string(link), 0) == 0)
+            {
+                found = true; 
+            }
+            else if (!found && line.rfind(string(frequentWord) + " ->", 0) == 0)
+            {
+                if (line.find(string(link)) == -1)
+                {
+                    line += " " + string(link);
+                }
+                found = true;
+            }
+            writeFile << line << "\n";
+        }
+        if (!found)
+        {
+            writeFile << frequentWord << " -> " << link << "\n";
+        }
+
+        readFile.close();
+        writeFile.close();
+        remove("log.txt");
+        rename("temp.txt", "log.txt");
+    }
 
     delete wordsFrequency;
 }
