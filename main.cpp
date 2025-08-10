@@ -16,7 +16,6 @@ int main(int argc, char *argv[])
         cout << "Invalid arguement for maximum crawling depth\n";
         return 0;
     }
-
     Crawl obj(argv[1], argv[2], depth);
     cout << "crawling started";
     obj.startCrawling();
