@@ -131,9 +131,7 @@ void create_Dir(char *name)
 // }
 bool isAlphaNum(char c)
 {
-    return (c >= '0' && c <= '9') ||
-           (c >= 'A' && c <= 'Z') ||
-           (c >= 'a' && c <= 'z');
+    return (c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
 }
 
 void extractWordsString(const char *filePath, const char *link)
@@ -250,10 +248,7 @@ void extractWordsString(const char *filePath, const char *link)
     }
 
     char *frequentWord = wordsFrequency->getFrequent();
-    // ofstream append("log.txt", ios::app);
-    // append << frequentWord << " -> ";
-    // append << link << "\n";
-    // cout << "frequent word is -> " << frequentWord << "\n\n";
+    lowerCase(frequentWord);
 
     ifstream readFile("log.txt");
     ofstream writeFile("temp.txt");
@@ -272,7 +267,7 @@ void extractWordsString(const char *filePath, const char *link)
         {
             if (!found && line.rfind(string(frequentWord) + " -> " + string(link), 0) == 0)
             {
-                found = true; 
+                found = true;
             }
             else if (!found && line.rfind(string(frequentWord) + " ->", 0) == 0)
             {
@@ -296,4 +291,31 @@ void extractWordsString(const char *filePath, const char *link)
     }
 
     delete wordsFrequency;
+}
+
+void searchForWord(char *word)
+{
+    ifstream readFile("D:/c++/CQST/crawler/output/log.txt");
+    if (!readFile.is_open())
+    {
+        cout << "Failed to open file";
+    }
+    char c;
+    int index = 0;
+    while (readFile.get(c))
+    {
+        if (word[index] != '\0' && word[index] == c)
+            index++;
+        else if (word[index] == '\0')
+        {
+            while(readFile.get(c) && c != '\n'){
+                cout<<c;
+            }
+            break;
+        }
+        else
+        {
+            index = 0;
+        }
+    }
 }

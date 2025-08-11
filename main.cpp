@@ -17,7 +17,6 @@ int main(int argc, char *argv[])
         return 0;
     }
     Crawl obj(argv[1], argv[2], depth);
-    cout << "crawling started";
     obj.startCrawling();
     return 0;
 }
